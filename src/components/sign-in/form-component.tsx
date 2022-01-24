@@ -9,11 +9,15 @@ export function Form(props: {
   title: string;
   buttonText: string;
   buttonTheme: ButtonTheme;
+  isSigIn: boolean;
+  handleOnClick: () => void;
 }) {
   //Props
   const title = props.title;
   const buttonText = props.buttonText;
   const buttonTheme = props.buttonTheme;
+  const isSigIn = props.isSigIn;
+  const handleOnClick = props.handleOnClick;
 
   const color = "#6e6e6b";
   const size = "20px";
@@ -48,9 +52,15 @@ export function Form(props: {
         </div>
       </div>
       <div>
-        <ForgotPassword href="">Forgot your password?</ForgotPassword>
+        {isSigIn ? (
+          <ForgotPassword href="">Forgot your password?</ForgotPassword>
+        ) : null}
       </div>
-      <Button theme={buttonTheme} text={buttonText} />
+      <Button
+        handleOnClick={handleOnClick}
+        theme={buttonTheme}
+        text={buttonText}
+      />
     </Fragment>
   );
 }
