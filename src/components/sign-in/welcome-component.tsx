@@ -9,18 +9,24 @@ export function Welcome(props: {
   buttonText: string;
   buttonTheme: ButtonTheme;
   description: string;
+  handleOnClick: () => void;
 }) {
   //Props
   const title = props.title;
   const buttonText = props.buttonText;
   const buttonTheme = props.buttonTheme;
   const description = props.description;
+  const handleOnClick = props.handleOnClick;
 
   return (
     <Fragment>
       <Title text={title} color="#FFFFFF"></Title>
       <Description text={description}></Description>
-      <Button theme={buttonTheme} text={buttonText} />
+      <Button
+        handleOnClick={handleOnClick}
+        theme={buttonTheme}
+        text={buttonText}
+      />
     </Fragment>
   );
 }
