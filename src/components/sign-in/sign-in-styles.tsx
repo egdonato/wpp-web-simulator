@@ -50,15 +50,18 @@ export const Description = styled.span`
 
 export const FormWrap = styled.div`
   width: 70%;
+  & div {
+    width: 100%;
+  }
+`;
+
+export const FormStyled = styled.form`
   display: flex;
   flex-wrap: wrap;
   text-align: center;
   row-gap: 40px;
   align-content: center;
-
-  & div {
-    width: 100%;
-  }
+  height: 100%;
 `;
 
 export const WelcomeWrap = styled.div`

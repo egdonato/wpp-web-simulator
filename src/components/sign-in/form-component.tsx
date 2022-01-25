@@ -1,4 +1,4 @@
-import { ForgotPassword, Input } from "../sign-in/sign-in-styles";
+import { ForgotPassword, Input, FormStyled } from "../sign-in/sign-in-styles";
 import { Fragment } from "react";
 import { MdPhoneIphone, MdLock } from "react-icons/md";
 import { Title } from "../common/title";
@@ -24,43 +24,41 @@ export function Form(props: {
 
   return (
     <Fragment>
-      <Title text={title} color="#2a948a"></Title>
-      <div>
+      <FormStyled onSubmit={handleOnClick}>
+        <Title text={title} color="#2a948a"></Title>
         <div>
-          <MdPhoneIphone
-            color={color}
-            size={size}
-            style={{
-              position: "absolute",
-              marginTop: "1.1em",
-              marginLeft: "1em",
-            }}
-          />
-          <Input type="text" name="phoneNumber" placeholder="Phone Number" />
+          <div>
+            <MdPhoneIphone
+              color={color}
+              size={size}
+              style={{
+                position: "absolute",
+                marginTop: "1.1em",
+                marginLeft: "1em",
+              }}
+            />
+            <Input type="text" name="phoneNumber" placeholder="Phone Number" />
+          </div>
+          <div>
+            <MdLock
+              color={color}
+              size={size}
+              style={{
+                position: "absolute",
+                marginTop: "1.1em",
+                marginLeft: "1em",
+              }}
+            />
+            <Input type="password" name="password" placeholder="Password" />
+          </div>
         </div>
         <div>
-          <MdLock
-            color={color}
-            size={size}
-            style={{
-              position: "absolute",
-              marginTop: "1.1em",
-              marginLeft: "1em",
-            }}
-          />
-          <Input type="password" name="password" placeholder="Password" />
+          {isSigIn ? (
+            <ForgotPassword href="">Forgot your password?</ForgotPassword>
+          ) : null}
         </div>
-      </div>
-      <div>
-        {isSigIn ? (
-          <ForgotPassword href="">Forgot your password?</ForgotPassword>
-        ) : null}
-      </div>
-      <Button
-        handleOnClick={handleOnClick}
-        theme={buttonTheme}
-        text={buttonText}
-      />
+        <Button theme={buttonTheme} text={buttonText} />
+      </FormStyled>
     </Fragment>
   );
 }

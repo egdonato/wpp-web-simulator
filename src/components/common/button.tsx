@@ -4,7 +4,7 @@ import { Button as ButtonStyled } from "../sign-in/sign-in-styles";
 export function Button(props: {
   text: string;
   theme: ButtonTheme;
-  handleOnClick: () => void;
+  handleOnClick?: () => void;
 }) {
   const text = props.text;
   const theme = props.theme;
