@@ -1,10 +1,12 @@
 import { Description as DescriptionStyled } from "../sign-in/sign-in-styles";
 
-export function Description(props: { text: string }) {
+export function Description(props: { text: string; className?: string }) {
   const text = props.text;
+  const className = props.className;
+
   return (
     <div>
-      <DescriptionStyled>{text}</DescriptionStyled>
+      <DescriptionStyled className={className}>{text}</DescriptionStyled>
     </div>
   );
 }

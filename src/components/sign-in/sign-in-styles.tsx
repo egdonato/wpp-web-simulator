@@ -14,7 +14,6 @@ export const SubContainer = styled.div`
   height: 40em;
   display: flex;
   justify-content: center;
-  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 `;
 
@@ -22,6 +21,8 @@ export const Title = styled.span`
   font-size: 2.5em;
   font-weight: bold;
   color: ${(props) => (props.color ? props.color : "#222831")};
+  display: block;
+  position: relative;
 `;
 
 export const Button = styled.button`
@@ -50,6 +51,7 @@ export const Description = styled.span`
 
 export const FormWrap = styled.div`
   width: 70%;
+  position: relative;
   & div {
     width: 100%;
   }
@@ -73,7 +75,7 @@ export const WelcomeWrap = styled.div`
   flex-wrap: wrap;
   align-content: center;
   row-gap: 40px;
-  border-radius: 0 10px 10px 0;
+  position: relative;
 `;
 
 export const ForgotPassword = styled.a`
