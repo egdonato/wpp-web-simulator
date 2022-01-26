@@ -10,6 +10,7 @@ export function Welcome(props: {
   buttonTheme: ButtonTheme;
   description: string;
   handleOnClick: () => void;
+  textClassName?: string;
 }) {
   //Props
   const title = props.title;
@@ -17,11 +18,12 @@ export function Welcome(props: {
   const buttonTheme = props.buttonTheme;
   const description = props.description;
   const handleOnClick = props.handleOnClick;
+  const textClassName = props.textClassName;
 
   return (
     <Fragment>
-      <Title text={title} color="#FFFFFF"></Title>
-      <Description text={description}></Description>
+      <Title className={textClassName} text={title} color="#FFFFFF"></Title>
+      <Description className={textClassName} text={description}></Description>
       <Button
         handleOnClick={handleOnClick}
         theme={buttonTheme}

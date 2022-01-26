@@ -11,6 +11,7 @@ export function Form(props: {
   buttonTheme: ButtonTheme;
   isSigIn: boolean;
   handleOnClick: () => void;
+  textClassName?: string;
 }) {
   //Props
   const title = props.title;
@@ -18,6 +19,7 @@ export function Form(props: {
   const buttonTheme = props.buttonTheme;
   const isSigIn = props.isSigIn;
   const handleOnClick = props.handleOnClick;
+  const textClassName = props.textClassName;
 
   const color = "#6e6e6b";
   const size = "20px";
@@ -25,7 +27,7 @@ export function Form(props: {
   return (
     <Fragment>
       <FormStyled onSubmit={handleOnClick}>
-        <Title text={title} color="#2a948a"></Title>
+        <Title className={textClassName} text={title} color="#2a948a"></Title>
         <div>
           <div>
             <MdPhoneIphone

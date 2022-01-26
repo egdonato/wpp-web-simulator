@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { SignIn } from "./pages/sign-in";
 import reportWebVitals from "./reportWebVitals";
-import "./index.css";
+import "./style/index.css";
 
 ReactDOM.render(
   <React.StrictMode>

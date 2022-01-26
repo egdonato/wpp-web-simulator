@@ -15,6 +15,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { ButtonTheme } from "../models/common";
+import "../style/animation.css";
 
 export function SignIn() {
   // ----- Initial data with sign in as default
@@ -54,20 +55,26 @@ export function SignIn() {
     false
   );
 
+  // const [isSingUpAnimation, setisSingUpAnimation] = useState<Boolean>(false);
   const [FormData, setFormData] = useState<RegisterDataModel>(signInFormData);
   const [WelcomeData, setWelcomeData] =
     useState<RegisterDataModel>(signInWelcomeData);
   const prevWelcomeDataRef = useRef<RegisterDataModel>(signInWelcomeData);
   const prevFormDataRef = useRef<RegisterDataModel>(signInFormData);
+  const formWrapRef = useRef<HTMLDivElement | null>(null);
+  const welcomeWrapRef = useRef<HTMLDivElement | null>(null);
+  const [isSingUpAnimation, setIsSingUpAnimation] = useState<boolean>(true);
 
   useEffect(() => {
     if (WelcomeData.isSignIn) {
       prevWelcomeDataRef.current = signUpWelcomeData;
       //Esta invertido porque son lo contrario, cuando Welcome es sign In el form es para Sing Up
       prevFormDataRef.current = signUpFormData;
+      setIsSingUpAnimation(false);
     } else {
       prevWelcomeDataRef.current = signInWelcomeData;
       prevFormDataRef.current = signInFormData;
+      setIsSingUpAnimation(true);
     }
   });
 
@@ -82,6 +89,26 @@ export function SignIn() {
   function welcomeHandleOnClick() {
     setWelcomeData(prevWelcomeDataRef.current);
     setFormData(prevFormDataRef.current);
+
+    if (isSingUpAnimation) {
+      buildSignUpAnimations();
+    } else {
+      buildSignInAnimations();
+    }
+  }
+
+  function buildSignUpAnimations() {
+    formWrapRef.current?.classList.remove("formAnimationSignIn");
+    welcomeWrapRef.current?.classList.remove("welcomeAnimationSignIn");
+    formWrapRef.current?.classList.add("formAnimationSignUp");
+    welcomeWrapRef.current?.classList.add("welcomeAnimationSignUp");
+  }
+
+  function buildSignInAnimations() {
+    formWrapRef.current?.classList.remove("formAnimationSignUp");
+    welcomeWrapRef.current?.classList.remove("welcomeAnimationSignUp");
+    formWrapRef.current?.classList.add("formAnimationSignIn");
+    welcomeWrapRef.current?.classList.add("welcomeAnimationSignIn");
   }
 
   function buildRegisterData(
@@ -105,22 +132,24 @@ export function SignIn() {
   return (
     <Container>
       <SubContainer>
-        <FormWrap>
+        <FormWrap ref={formWrapRef}>
           <Form
             title={FormData.title}
             buttonText={FormData.buttonText}
             buttonTheme={FormData.buttonTheme}
             isSigIn={FormData.isSignIn}
             handleOnClick={FormData.handleOnClick}
+            textClassName={"textFadeIn"}
           />
         </FormWrap>
-        <WelcomeWrap>
+        <WelcomeWrap ref={welcomeWrapRef}>
           <Welcome
             title={WelcomeData.title}
             buttonText={WelcomeData.buttonText}
             buttonTheme={WelcomeData.buttonTheme}
             description={WelcomeData.description ? WelcomeData.description : ""}
             handleOnClick={WelcomeData.handleOnClick}
+            textClassName={"textFadeIn"}
           />
         </WelcomeWrap>
       </SubContainer>
